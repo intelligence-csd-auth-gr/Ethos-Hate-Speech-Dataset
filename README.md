@@ -9,5 +9,13 @@ Please check our older dataset as well: https://intelligence.csd.auth.gr/topics/
 ## Reference
 To Add Arxiv maybe?
 
+## Contributors on Ethos
+Name | Email
+--- | ---
+Grigorios Tsoumakas | greg@csd.auth.gr
+Ioannis Mollas | iamollas@csd.auth.gr
+Zoe Chrysopoulou | zoichrys@csd.auth.gr
+Stamatis Karlos | stkarlos@csd.auth.gr
+
 ## License
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
