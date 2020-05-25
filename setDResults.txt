@@ -1,0 +1,3 @@
+Method  | F1score Precisi Recall  Accurac Specifi Sensiti
+==========================================================
+BERT    | 0.7883  0.7917  0.7843  0.7664  0.7431  0.7843 
