@@ -81,12 +81,12 @@ class Preproccesor:
         """
 
     def load_data(preprocessed = True):
-        data = pd.read_csv("Ethos_Dataset.csv", delimiter=';')
+        data = pd.read_csv("Ethos_Dataset_Binary.csv", delimiter=';')
         data = shuffle(data)
 
         XT = data['comment'].values
         X = []
-        yT = data['isHate'].values #Add all the labels here :/
+        yT = data['isHate'].values
         y = []
         for yt in yT:
             if yt>=0.5:
@@ -101,7 +101,7 @@ class Preproccesor:
         return numpy.array(X),numpy.array(y)
 
     def load_multi_label_data(preprocessed = True):
-        data = pd.read_csv("Ethos_Dataset.csv", delimiter=';')
+        data = pd.read_csv("Ethos_Dataset_Multi_Label.csv", delimiter=';')
         data = shuffle(data)
 
         XT = data['comment'].values

@@ -32,7 +32,7 @@ ftwo_scorer = make_scorer(fbeta_score, beta=2)
 nltk.download('wordnet')
 nltk.download('stopwords')
 X, yt, y = Preproccesor.load_multi_label_data(True) #yt has continuous data, y has binary
-label_names = ["isHate","isViolence","isNotViolence","isGeneralized","isDirected","gender","race","national_origin","disability","religion","sexual_orientation"]
+label_names = ["violence","directed_vs_generalized","gender","race","national_origin","disability","religion","sexual_orientation"]
 
 warnings.filterwarnings('ignore')
 
@@ -139,10 +139,10 @@ parameters = [{
     'vec__ngram_range':[(1,1), (1,2), (1,5)],
     'vec__max_features':[5000, 10000, 50000, 100000],
     'vec__stop_words':['english', None],
-    'MLkNN__k':[1, 2, 3, 10, 20, 50],
+    'MLkNN__k':[1, 3, 10, 20, 50],
     'MLkNN__s': [0.5, 0.7, 1.0]
 }]
-#nested_cross_val(pipe, parameters, X, y, "MLkNN")
+nested_cross_val(pipe, parameters, X, y, "MLkNN")
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Run MLTSVM
@@ -154,9 +154,9 @@ parameters = [{
     'vec__ngram_range':[(1,1), (1,2), (1,5)],
     'vec__max_features':[5000, 10000, 50000, 100000],
     'vec__stop_words':['english', None],
-    'MLTSVM__c_k': [2**i for i in range(-5, 12, 2)]
+    'MLTSVM__c_k': [2**i for i in range(-5, 10, 2)]
 }]
-nested_cross_val(pipe, parameters, X, y, "MLTSVM")
+#nested_cross_val(pipe, parameters, X, y, "MLTSVM")
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -170,14 +170,14 @@ parameters = [{
     'vec__max_features':[5000, 10000, 50000, 100000],
     'vec__stop_words':['english', None],
     'MLARAM__vigilance': [0.8, 0.9, 0.999],
-    'MLARAM__threshold': [0.01, 0.05, 0.1]
+    'MLARAM__threshold': [0.01, 0.1]
 }]
-#nested_cross_val(pipe, parameters, X, y, "MLARAM")
+nested_cross_val(pipe, parameters, X, y, "MLARAM")
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Run Binary Relevance
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-br = BinaryRelevance(classifier=logReg, require_dense=[False, True])
+br = BinaryRelevance(require_dense=[False, True])
 vec = TfidfVectorizer(analyzer='word')
 pipe = Pipeline(steps=[('vec', vec), ('br', br)])
 parameters = [{
@@ -202,7 +202,7 @@ parameters = [{
     'vec__stop_words':['english', None],
     'ch__classifier':[LogisticRegression(C=1000), SVC(C=1000),LogisticRegression(C=100), SVC(C=100), LogisticRegression(C=10), SVC(C=10), DecisionTreeClassifier(), RandomForestClassifier()]
 }]
-#nested_cross_val(pipe, parameters, X, y, "ClassifierChains")
+nested_cross_val(pipe, parameters, X, y, "ClassifierChains")
 
 """
 print("Starting pairwise")
