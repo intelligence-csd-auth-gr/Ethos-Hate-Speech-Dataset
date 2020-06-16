@@ -7,7 +7,7 @@ is a Greek word meaning “character” that is used to describe the guiding bel
 Please check our older dataset as well: https://intelligence.csd.auth.gr/topics/hate-speech-detection/
 
 ## Reference
-Please if you use this dataset in your research cite out preprint paper: [ETHOS: an Online Hate Speech Detection Dataset](https://arxiv.org/user/)
+Please if you use this dataset in your research cite out preprint paper: [ETHOS: an Online Hate Speech Detection Dataset](https://arxiv.org/abs/2006.08328)
 ```
 @misc{mollas2020ethos,
     title={ETHOS: an Online Hate Speech Detection Dataset},
