@@ -1,7 +1,5 @@
 # Proposed Plan
 
-I propose to run these experiments:
-
 ## Binary Classification on Ethos HateSpeech Dataset
 
 **!Task: Contains hate speech or not?!**
@@ -22,9 +20,10 @@ I propose to run these experiments:
 9. BaggingClassifier (with max_samples &/|| max_features)
 
 ### text_to_secuenxe & Embeddings:
-1. word2vec
+1. FastText
 2. GloVe
-3. Bert [Maybe!?]
+3. GloVe + FastText
+4. Bert
 
 ### Run Grid Searches on these Neurals:
 1. LSTMs

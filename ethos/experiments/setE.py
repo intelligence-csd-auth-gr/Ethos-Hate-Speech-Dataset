@@ -17,7 +17,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from skmultilearn.adapt import MLkNN, MLTSVM, MLARAM
-from preprocess import Preproccesor
+from utilities.preprocess import Preproccesor
 from sklearn.metrics import f1_score, accuracy_score, hamming_loss, make_scorer, fbeta_score, multilabel_confusion_matrix,\
                             average_precision_score, precision_score, recall_score
 import nltk
@@ -36,7 +36,7 @@ label_names = ["violence","directed_vs_generalized","gender","race","national_or
 
 warnings.filterwarnings('ignore')
 
-f = open("setE.txt", "w+")
+f = open("../results/setE.txt", "w+")
 f.write("{:<7} | {:<7} {:<7} {:<7} {:<7} {:<7} {:<7} {:<7} {:<7} {:<7} {:<7} {:<7} {:<7} {:<7} \n".format('Method',
                                                                                             'F1_Ex','F1_Ma','F1_Mi',
                                                                                             'Pre_Ex','Pre_Ma','Pre_Mi',
@@ -98,7 +98,7 @@ def nested_cross_val(pipe,parameters,X,y,name):
         cmt = cmt + ra
     cmt = cmt/10
     print(cmt)
-    f = open("setE.txt", "a+")
+    f = open("../results/setE.txt", "a+")
     f.write("{:<7} | {:<7} {:<7} {:<7} {:<7} {:<7} {:<7} {:<7} {:<7} {:<7} {:<7} {:<7} {:<7} {:<7} \n".format(str(name)[:7],
                                                   str('%.4f' % (sum(scores['test_F1_example'])/10)),
                                                   str('%.4f' % (sum(scores['test_F1_macro'])/10)),
