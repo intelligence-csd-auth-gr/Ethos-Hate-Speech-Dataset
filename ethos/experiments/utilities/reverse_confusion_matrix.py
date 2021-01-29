@@ -9,7 +9,7 @@
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.metrics import confusion_matrix, accuracy_score
+from sklearn.metrics import confusion_matrix, accuracy_score, balanced_accuracy_score
 from sklearn.metrics.classification import _prf_divide
 from preprocess import Preproccesor
 import numpy as np
@@ -21,9 +21,9 @@ def my_confusion_matrix(se,acc,all,pos):
     fp = all - tp - tn - fn
     return tn, fp, fn, tp
 
-se = 0.7843
-acc = 0.7664
-tn, fp, fn, tp = my_confusion_matrix(se,acc,998,433)
+se = 0.3418
+acc = 0.9424
+tn, fp, fn, tp = my_confusion_matrix(se,acc,23353,1430)
 print(tn, fp, fn, tp)
 tp_sum = np.array([tn,tp])
 pred_sum = tp_sum + np.array([fp,fn])
@@ -36,4 +36,13 @@ recall = _prf_divide(tp_sum, true_sum, 'recall', 'true', None,  ('precision','re
 denom = beta2 * precision + recall
 denom[denom == 0.] = 1  # avoid division by 0
 f_score = (1 + beta2) * precision * recall / denom
-print(f_score[1],precision[1],recall[1])
+
+C = np.array([[21519, 404],[941, 489]])
+with np.errstate(divide='ignore', invalid='ignore'):
+    per_class = np.diag(C) / C.sum(axis=1)
+if np.any(np.isnan(per_class)):
+    warnings.warn('y_pred contains classes not in y_true')
+    per_class = per_class[~np.isnan(per_class)]
+score = np.mean(per_class)
+
+print(score,f_score[0],f_score[1],precision[1],recall[1])

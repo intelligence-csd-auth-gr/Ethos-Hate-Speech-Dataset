@@ -6,11 +6,28 @@ ETHOS: onlinE haTe speecH detectiOn dataSet. This repository contains a dataset 
 ## Ethos /ˈiːθɒs/ 
 is a Greek word meaning “character” that is used to describe the guiding beliefs or ideals that characterize a community, nation, or ideology. The Greeks also used this word to refer to the power of music to influence emotions, behaviors, and even morals.
 
+Please check our older dataset as well: https://intelligence.csd.auth.gr/topics/hate-speech-detection/
+
+## Reference
+Please if you use this dataset in your research cite out preprint paper: [ETHOS: an Online Hate Speech Detection Dataset](https://arxiv.org/abs/2006.08328)
+```
+@misc{mollas2020ethos,
+    title={ETHOS: an Online Hate Speech Detection Dataset},
+    author={Ioannis Mollas and Zoe Chrysopoulou and Stamatis Karlos and Grigorios Tsoumakas},
+    year={2020},
+    eprint={2006.08328},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL}
+}
+```
 
 ## Contributors on Ethos
 Name | Email
 --- | ---
-Uknown Contributors
+Grigorios Tsoumakas | greg@csd.auth.gr
+Ioannis Mollas | iamollas@csd.auth.gr
+Zoe Chrysopoulou | zoichrys@csd.auth.gr
+Stamatis Karlos | stkarlos@csd.auth.gr
 
 ## License
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
