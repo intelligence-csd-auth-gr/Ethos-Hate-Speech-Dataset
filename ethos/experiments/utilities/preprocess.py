@@ -14,6 +14,7 @@ import numpy
 import numpy as np
 from sklearn.utils import shuffle
 
+
 def my_clean(text, stops=False, stemming=False):
     text = str(text)
     text = re.sub(r" US ", " american ", text)
@@ -57,15 +58,17 @@ def my_clean(text, stops=False, stemming=False):
     text = text.lower().split()
     text = [w for w in text if len(w) >= 2]
     if stemming and stops:
-        text = [word for word in text if word not in stopwords.words('english')]
+        text = [
+            word for word in text if word not in stopwords.words('english')]
         wordnet_lemmatizer = WordNetLemmatizer()
         englishStemmer = SnowballStemmer("english", ignore_stopwords=True)
         text = [englishStemmer.stem(word) for word in text]
         text = [wordnet_lemmatizer.lemmatize(word) for word in text]
-        # text = [lancaster.stem(word) for word in text]
-        text = [word for word in text if word not in stopwords.words('english')]
+        text = [
+            word for word in text if word not in stopwords.words('english')]
     elif stops:
-        text = [word for word in text if word not in stopwords.words('english')]
+        text = [
+            word for word in text if word not in stopwords.words('english')]
     elif stemming:
         wordnet_lemmatizer = WordNetLemmatizer()
         englishStemmer = SnowballStemmer("english", ignore_stopwords=True)
@@ -81,8 +84,9 @@ class Preproccesor:
         """Init function
         """
 
-    def load_data(preprocessed = True, stemming_a=True):
-        data = pd.read_csv("../ethos_data/Ethos_Dataset_Binary.csv", delimiter=';')
+    def load_data(preprocessed=True, stemming_a=True):
+        data = pd.read_csv(
+            "../ethos_data/Ethos_Dataset_Binary.csv", delimiter=';')
         np.random.seed(2000)
         data = data.iloc[np.random.permutation(len(data))]
         XT = data['comment'].values
@@ -90,7 +94,7 @@ class Preproccesor:
         yT = data['isHate'].values
         y = []
         for yt in yT:
-            if yt>=0.5:
+            if yt >= 0.5:
                 y.append(int(1))
             else:
                 y.append(int(0))
@@ -99,19 +103,21 @@ class Preproccesor:
                 X.append(my_clean(text=str(x), stops=False, stemming=stemming_a))
             else:
                 X.append(x)
-        return numpy.array(X),numpy.array(y)
+        return numpy.array(X), numpy.array(y)
 
-    def load_multi_label_data(preprocessed = True, stemming_a=True):
-        data = pd.read_csv("../ethos_data/Ethos_Dataset_Multi_Label.csv", delimiter=';')
+    def load_multi_label_data(preprocessed=True, stemming_a=True):
+        data = pd.read_csv(
+            "../ethos_data/Ethos_Dataset_Multi_Label.csv", delimiter=';')
 
         XT = data['comment'].values
         X = []
-        yT = data.loc[:,data.columns != 'comment'].values #Add all the labels here :/
+        # Add all the labels here 
+        yT = data.loc[:, data.columns != 'comment'].values
         y = []
         for yt in yT:
             yi = []
             for i in yt:
-                if i>=0.5:
+                if i >= 0.5:
                     yi.append(int(1))
                 else:
                     yi.append(int(0))
@@ -121,9 +127,9 @@ class Preproccesor:
                 X.append(my_clean(text=str(x), stops=False, stemming=stemming_a))
             else:
                 X.append(x)
-        return numpy.array(X),numpy.array(yT),numpy.array(y)
+        return numpy.array(X), numpy.array(yT), numpy.array(y)
 
-    def load_external_data(preprocessed = True, stemming_a=True):
+    def load_external_data(preprocessed=True, stemming_a=True):
         """
         @inproceedings{hateTweets,
           title = {Automated Hate Speech Detection and the Problem of Offensive Language},
@@ -141,7 +147,7 @@ class Preproccesor:
         y = []
         XT = data['tweet'].values
         yT = data['class'].values
-        yT = [0 if (i==1 or i==2) else 1 for i in yT]
+        yT = [0 if (i == 1 or i == 2) else 1 for i in yT]
         c = 0
         for x in XT:
             if preprocessed:
@@ -151,9 +157,9 @@ class Preproccesor:
                 X.append(x)
                 y.append(yT[c])
             c = c + 1
-        return numpy.array(X),numpy.array(y)
+        return numpy.array(X), numpy.array(y)
 
-    def load_mlma(preprocessed = True, stemming_a=True):
+    def load_mlma(preprocessed=True, stemming_a=True):
         """
         @inproceedings{DBLP:conf/emnlp/OusidhoumLZSY19,
           author    = {Nedjma Ousidhoum and
@@ -177,16 +183,15 @@ class Preproccesor:
         """
         data = pd.read_csv("../hs_data//en_dataset_with_stop_words.csv")
         X = []
-        y = []
         XT = data['tweet'].values
         c = 0
         for x in XT:
             if preprocessed:
                 text = my_clean(text=str(x), stops=False, stemming=stemming_a)
                 while 'user' in text:
-                    text = text.replace('user','')
+                    text = text.replace('user', '')
                 X.append(text)
             else:
                 X.append(x)
             c = c + 1
-        return numpy.array(X),data['sentiment'].values,data['directness'].values,data['annotator_sentiment'].values, data['target'].values,data['group'].values, ['tweet','sentiment','directness','annotator_sentiment','target','group']
+        return numpy.array(X), data['sentiment'].values, data['directness'].values, data['annotator_sentiment'].values, data['target'].values, data['group'].values, ['tweet', 'sentiment', 'directness', 'annotator_sentiment', 'target', 'group']
