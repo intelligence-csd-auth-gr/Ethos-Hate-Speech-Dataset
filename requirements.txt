@@ -2,7 +2,7 @@ pandas==0.25.1
 numpy==1.19.4
 scikit-learn==0.23.1
 Keras==2.2.4
-nltk==3.2.4
+nltk==3.4.5
 bert-text==5.0.0
 iterative-stratification==0.1.6
 scikit-multilearn==0.2.0
