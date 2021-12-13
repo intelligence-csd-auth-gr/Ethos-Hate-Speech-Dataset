@@ -180,7 +180,7 @@ lightgbm==2.2.3
 llvmlite==0.34.0
 lmdb==0.99
 LunarCalendar==0.0.9
-lxml==4.6.3
+lxml==4.6.5
 Markdown==3.3.4
 MarkupSafe==2.0.1
 matplotlib==3.2.2
