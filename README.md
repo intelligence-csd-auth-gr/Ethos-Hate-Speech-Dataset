@@ -9,15 +9,17 @@ is a Greek word meaning “character” that is used to describe the guiding bel
 Please check our older dataset as well: https://intelligence.csd.auth.gr/topics/hate-speech-detection/
 
 ## Reference
-Please if you use this dataset in your research cite out preprint paper: [ETHOS: an Online Hate Speech Detection Dataset](https://arxiv.org/abs/2006.08328)
+Please if you use this dataset in your research cite out preprint paper: [ETHOS: a multi-label hate speech detection dataset](https://rdcu.be/cEoQn)
 ```
-@misc{mollas2020ethos,
-    title={ETHOS: an Online Hate Speech Detection Dataset},
-    author={Ioannis Mollas and Zoe Chrysopoulou and Stamatis Karlos and Grigorios Tsoumakas},
-    year={2020},
-    eprint={2006.08328},
-    archivePrefix={arXiv},
-    primaryClass={cs.CL}
+@article{mollas_ethos_2022,
+	title = {{ETHOS}: a multi-label hate speech detection dataset},
+	issn = {2198-6053},
+	url = {https://doi.org/10.1007/s40747-021-00608-2},
+	doi = {10.1007/s40747-021-00608-2},
+	journal = {Complex \& Intelligent Systems},
+	author = {Mollas, Ioannis and Chrysopoulou, Zoe and Karlos, Stamatis and Tsoumakas, Grigorios},
+	month = jan,
+	year = {2022},
 }
 ```
 
