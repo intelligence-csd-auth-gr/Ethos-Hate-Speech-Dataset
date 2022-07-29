@@ -187,7 +187,7 @@ matplotlib==3.2.2
 matplotlib-inline==0.1.2
 matplotlib-venn==0.11.6
 missingno==0.4.2
-mistune==0.8.4
+mistune==2.0.3
 mizani==0.6.0
 mkl==2019.0
 mlxtend==0.14.0
